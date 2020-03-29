@@ -13,6 +13,16 @@ virtual Move play(const State &s) = 0;
 friend ostream & operator << (ostream &out, const Player &player);
 };
 
+
+
+
+
+
+
+
+
+
+
 Player::Player(const string &n){
   name = n;
 }
@@ -22,7 +32,7 @@ Player::~Player(){
 }
 
 ostream & operator << (ostream &out, const Player &player){
-  out<< getType() << " player " << player.name;
+  out<< player.getType() << " player " << player.name;
   return out;
 }
 
