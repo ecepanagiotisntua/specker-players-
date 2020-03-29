@@ -66,7 +66,7 @@ class SpartanPlayer : public Player{
           sh = i;
         }
       }
-      Move Spartan(sh, sc, 0, 0);
+      Move Spartan(sh, 1, 0, 0);
       return Spartan;
     }
 };
