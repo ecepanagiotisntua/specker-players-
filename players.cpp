@@ -71,33 +71,33 @@ class SpartanPlayer : public Player{
     }
 };
 
-class SneakyPlayer : public Player{
-  
-  private:
-  
-  string type;
-  
-  public:
-    SneakyPlayer(const string &n) : Player(n){
-      type = "Sneaky";
-    }
-  
-    virtual const string & getType() const override{
-      return type;
-    }
-    
-    virtual Move play(const State &state) override{
-      int sh = 0;
-      int sc = 0;
-      for (int i = 0; i < state.getHeaps(); i++){
-        if (state.getCoins(i) < sc){
-          sc = state.getCoins(i);
-          sh = i;
-        }
-      }
-      Move Sneaky(sh, sc, 0, 0);
-      return Sneaky;
-    }
+class SneakyPlayer : public Player { 
+public:
+  SneakyPlayer(const string &n) : Player(n) {
+    type = "Sneaky";
+  }
+  virtual const string & getType() const override {
+	return type;	
+  }
+
+  virtual Move play(const State &state) override { 
+  	int j = 0;
+	while ( state.getCoins(j) == 0){
+		j++;
+	}
+	int sh = j;
+	int sc = state.getCoins(j);
+	for (int i=j+1; i < state.getHeaps(); i++) {
+		if ( (state.getCoins(i) < sc) && (state.getCoins(i) > 0 )) {
+			sh = i;
+			sc = state.getCoins(i);
+		}
+	}
+	Move Sneaky(sh, sc, 0, 0);
+return Sneaky;
+  }
+private:
+	string type;
 };
 
 class RighteousPlayer : public Player{
